@@ -1,5 +1,6 @@
 import 'package:behrd/src/pages/settings/category/settings_category.dart';
 import 'package:behrd/src/utils/device_type.dart';
+import 'package:behrd/src/utils/string_utils.dart';
 import 'package:flutter/material.dart';
 
 class CategoryCard extends StatelessWidget {
@@ -31,12 +32,12 @@ class CategoryCard extends StatelessWidget {
                     padding: EdgeInsets.all(6),
                     decoration: BoxDecoration(
                       shape: BoxShape.circle,
-                      color: category.categoryColor ?? Theme.of(context).colorScheme.secondary,
+                      color: category.categoryColor ?? Theme.of(context).colorScheme.primaryContainer,
                     ),
                     child: Icon(
                       category.icon,
                       size: category.iconSize,
-                      color: category.iconColor  ?? Theme.of(context).colorScheme.primaryContainer,
+                      color: category.iconColor  ?? Theme.of(context).colorScheme.secondary,
                     ),
                   ),
                 ) : const SizedBox(),
@@ -52,11 +53,19 @@ class CategoryCard extends StatelessWidget {
 
             Row(
               children: [
+                Text(
+                  StringUtils.firstLetterUpper(category.getPrimarySettingStringValue() ?? ""),
+                  style: TextStyle(
+                    fontSize: 14,
+                    color: Theme.of(context).colorScheme.onSurface.withAlpha(101),
+                  ),
+                ),
+                const SizedBox(width: 8),
                 Icon(
                   deviceType == DeviceType.android
                       ? Icons.arrow_forward
                       : Icons.arrow_forward_ios,
-                  size: 24,
+                  size: 20,
                   color: Theme.of(context).colorScheme.primary,
                 ),
               ],

@@ -1,5 +1,6 @@
 import 'dart:io';
 import 'package:behrd/src/pages/settings/category/settings_category.dart';
+import 'package:behrd/src/pages/settings/group/settings_category_group.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:behrd/src/utils/device_type.dart';
@@ -9,7 +10,7 @@ import 'package:behrd/src/pages/settings/page/settings_scaffold.dart';
 class BehrdSettings implements Pages {
   @override
   final DeviceType targetPlatform;
-  final List<SettingsCategory> categories;
+  final List<SettingsCategoryGroup> categories;
   final String title;
 
   const BehrdSettings({
@@ -31,7 +32,7 @@ class BehrdSettings implements Pages {
       SettingsPage(
         title: title,
         targetPlatform: useCupertino? DeviceType.iOS : DeviceType.android,
-        categories: categories,
+        groups: categories,
       ),
       useCupertino: useCupertino,
     );
@@ -39,7 +40,8 @@ class BehrdSettings implements Pages {
 
   Future<T?> _openWithRoute<T>(
       BuildContext context,
-      Widget page, {
+      Widget page,
+      {
         required bool useCupertino,
       }) {
     final route = useCupertino

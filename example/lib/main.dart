@@ -13,7 +13,11 @@ class MyApp extends StatelessWidget {
       title: 'Behrd Demo',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.black, brightness: Brightness.dark),
+        dividerColor: Colors.grey.shade300,
+        colorScheme: ColorScheme.fromSeed(
+          seedColor: Colors.blue.shade700,
+          brightness: Brightness.light,
+        ),
       ),
       home: const MyHomePage(title: 'Behrd Example'),
     );
@@ -31,8 +35,31 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   BehrdSettings settings = BehrdSettings(
+    targetPlatform: DeviceType.auto,
     categories: [
-      SettingsCategory(title: "Notifications", icon: Icons.notifications, items: []),
+      SettingsCategoryGroup(
+        categories: [
+          SettingsCategory(title: "Notifications", icon: Icons.notifications, settings: [
+            OnOffSetting(title: "Receive emails", value: false, onChanged: (val) {}, isPrimary: true),
+            OnOffSetting(title: "Receive Push Notifications", value: true, onChanged: (val) {}, isPrimary: true),
+          ]),
+          SettingsCategory(title: "Theme", icon: Icons.dark_mode, settings: [
+            OnOffSetting(title: "Theme", value: true, onChanged: (val) {}, isPrimary: true, onHint: "Dark", offHint: "Light"),
+          ]),
+          SettingsCategory(title: "Language", icon: Icons.translate, settings: [
+            StringSelectionSetting(title: "Language", selections: ["English", "Spanish"], onChanged: (val) {}, value: "English", isPrimary: true),
+          ]),
+        ],
+        title: "App",
+      ),
+      SettingsCategoryGroup(
+        categories: [
+          SettingsCategory(title: "Account", icon: Icons.account_circle, settings: [
+            TextSetting(title: "Name", onChanged: (val) {}, value: "John Doe", isPrimary: true),
+          ]),
+        ],
+        title: "Account",
+      ),
     ],
   );
 

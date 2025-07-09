@@ -1,10 +1,10 @@
 
-import 'package:behrd/src/pages/settings/category/setting.dart';
+import 'package:behrd/src/pages/settings/setting/setting.dart';
 import 'package:flutter/cupertino.dart';
 
 class SettingsCategory {
   final String title;
-  final List<Setting> items;
+  final List<Setting> settings;
   final IconData? icon;
   final bool showIcon;
   final double iconSize;
@@ -14,7 +14,7 @@ class SettingsCategory {
 
   const SettingsCategory({
     required this.title,
-    required this.items,
+    required this.settings,
     this.showIcon = true,
     this.iconSize = 24,
     this.iconColor,
@@ -22,5 +22,11 @@ class SettingsCategory {
     this.icon,
     this.categoryColor,
   });
+
+  String? getPrimarySettingStringValue() {
+    final int index = settings.indexWhere((e) => e.isPrimary);
+    if (index == -1) return null;
+    return settings[index].getPrimaryStringValue();
+  }
 
 }

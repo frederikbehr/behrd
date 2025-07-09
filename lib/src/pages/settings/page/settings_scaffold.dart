@@ -1,3 +1,4 @@
+import 'package:behrd/src/pages/settings/group/settings_category_group.dart';
 import 'package:behrd/src/pages/settings/page/components/category_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -7,13 +8,13 @@ import '../category/settings_category.dart';
 
 class SettingsPage extends StatefulWidget {
   final DeviceType targetPlatform;
-  final List<SettingsCategory> categories;
+  final List<SettingsCategoryGroup> groups;
   final String title;
 
   const SettingsPage({
     super.key,
     required this.targetPlatform,
-    required this.categories,
+    required this.groups,
     required this.title,
   });
 
@@ -39,16 +40,34 @@ class _SettingsPageState extends State<SettingsPage> {
             ListView.builder(
               physics: const NeverScrollableScrollPhysics(),
               shrinkWrap: true,
-              padding: EdgeInsets.only(top: 24, bottom: 72),
-              itemCount: widget.categories.length,
+              padding: EdgeInsets.only(bottom: 72),
+              itemCount: widget.groups.length,
               itemBuilder: (BuildContext context, int index) {
-                return CategoryCard(
-                  category: widget.categories[index],
-                  deviceType: widget.targetPlatform,
-                  onPressed: (SettingsCategory category) {
-                    HapticFeedback.lightImpact();
-                    openSetting(category);
-                  },
+                return Column(
+                  children: [
+                    index > 0? Divider(
+                      thickness: 1,
+                      color: Theme.of(context).dividerColor,
+                      indent: 32,
+                      endIndent: 32,
+                    ) : const SizedBox(),
+                    ListView.builder(
+                      physics: const NeverScrollableScrollPhysics(),
+                      shrinkWrap: true,
+                      padding: EdgeInsets.only(top: 12, bottom: 12),
+                      itemCount: widget.groups[index].categories.length,
+                      itemBuilder: (BuildContext context, int i) {
+                        return CategoryCard(
+                          category: widget.groups[index].categories[i],
+                          deviceType: widget.targetPlatform,
+                          onPressed: (SettingsCategory category) {
+                            HapticFeedback.lightImpact();
+                            openSetting(category);
+                          },
+                        );
+                      },
+                    ),
+                  ],
                 );
               },
             ),
