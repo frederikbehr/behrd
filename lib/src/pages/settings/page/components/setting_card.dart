@@ -19,7 +19,7 @@ class SettingCard extends StatelessWidget {
     return SizedBox(
       width: MediaQuery.of(context).size.width,
       child: Padding(
-        padding: EdgeInsets.symmetric(vertical: 12, horizontal: 16),
+        padding: EdgeInsets.symmetric(vertical: 8, horizontal: 16),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [

@@ -35,13 +35,27 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   BehrdSettings settings = BehrdSettings(
-    targetPlatform: DeviceType.android,
+    targetPlatform: DeviceType.iOS,
     categories: [
       SettingsCategoryGroup(
         categories: [
           SettingsCategory(title: "Notifications", icon: Icons.notifications, settings: [
-            OnOffSetting(title: "Receive emails", value: false, onChanged: (val) {}, isPrimary: true),
-            OnOffSetting(title: "Receive Push Notifications", value: true, onChanged: (val) {}, isPrimary: true),
+            OnOffSetting(
+              title: "Receive emails",
+              value: true,
+              onChanged: (val) {},
+              isPrimary: true,
+              style: OnOffSettingStyle.checkBox,
+              icon: Icons.email,
+            ),
+            OnOffSetting(
+              title: "Receive Push Notifications",
+              value: false,
+              onChanged: (val) {},
+              isPrimary: true,
+              style: OnOffSettingStyle.nativeSwitch,
+              icon: Icons.notifications,
+            ),
           ]),
           SettingsCategory(title: "Theme", icon: Icons.dark_mode, settings: [
             OnOffSetting(title: "Theme", value: true, onChanged: (val) {}, isPrimary: true, onHint: "Dark", offHint: "Light"),

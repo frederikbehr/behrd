@@ -1,5 +1,5 @@
 import 'package:behrd/behrd.dart';
-import 'package:behrd/src/components/native_switch/native_switch.dart';
+import 'package:behrd/src/components/native_checkbox/native_checkbox.dart';
 import 'package:behrd/src/pages/settings/page/components/setting_card.dart';
 import 'package:flutter/material.dart';
 
@@ -17,9 +17,14 @@ class OnOffSettingWidget extends StatelessWidget {
     return SettingCard(
       deviceType: targetPlatform,
       setting: setting,
-      child: NativeSwitch(
+      child: setting.style == OnOffSettingStyle.nativeSwitch? NativeSwitch(
         targetPlatform: targetPlatform,
-        value: false,
+        initialValue: setting.value,
+        onChanged: (val) => setting.onChanged(val),
+      ) : NativeCheckbox(
+        targetPlatform: targetPlatform,
+        initialValue: setting.value,
+        size: 28,
         onChanged: (val) => setting.onChanged(val),
       ),
     );

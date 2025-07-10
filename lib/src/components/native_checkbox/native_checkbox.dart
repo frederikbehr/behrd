@@ -3,22 +3,24 @@ import 'package:behrd/src/components/loading/static_loading.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class NativeSwitch extends StatefulWidget {
+class NativeCheckbox extends StatefulWidget {
   final DeviceType targetPlatform;
   final bool initialValue;
   final Function(bool) onChanged;
-  const NativeSwitch({
+  final double size;
+  const NativeCheckbox({
     super.key,
     required this.targetPlatform,
     required this.initialValue,
     required this.onChanged,
+    required this.size,
   });
 
   @override
-  State<NativeSwitch> createState() => _NativeSwitchState();
+  State<NativeCheckbox> createState() => _NativeCheckboxState();
 }
 
-class _NativeSwitchState extends State<NativeSwitch> {
+class _NativeCheckboxState extends State<NativeCheckbox> {
   bool isLoading = true;
   late bool value;
 
@@ -38,20 +40,25 @@ class _NativeSwitchState extends State<NativeSwitch> {
     widget.onChanged(newValue);
   }
 
+  double getScale() => widget.size / 18; // 18 = default size
+
   @override
   Widget build(BuildContext context) {
     if (isLoading) return StaticLoading(targetPlatform: widget.targetPlatform, size: 50);
 
-    if (widget.targetPlatform == DeviceType.iOS) {
-      return CupertinoSwitch(
+    return Transform.scale(
+      scale: getScale(),
+      child: widget.targetPlatform == DeviceType.iOS? CupertinoCheckbox(
         value: value,
-        onChanged: (val) => updateValue(val),
-      );
-    } else {
-      return Switch(
+        onChanged: (val) {
+          if (val != null) updateValue(val);
+        },
+      ) : Checkbox(
         value: value,
-        onChanged: (val) => updateValue(val),
-      );
-    }
+        onChanged: (val) {
+          if (val != null) updateValue(val);
+        },
+      ),
+    );
   }
 }
