@@ -16,7 +16,7 @@ class BehrdNativeStaticLoading extends StatelessWidget {
     if (targetPlatform == DeviceType.iOS) {
       return CupertinoActivityIndicator(radius: size / 2);
     } else {
-      return SizedBox(width: size, height: size, child: CircularProgressIndicator(strokeWidth: size / 10));
+      return SizedBox(width: size, height: size, child: CircularProgressIndicator());
     }
   }
 }
