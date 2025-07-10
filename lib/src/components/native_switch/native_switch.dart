@@ -1,8 +1,7 @@
 import 'package:behrd/behrd.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
-import '../loading/native_static_loading.dart';
+import 'dart:io' show Platform;
 
 class BehrdNativeSwitch extends StatefulWidget {
   final DeviceType targetPlatform;
@@ -22,6 +21,7 @@ class BehrdNativeSwitch extends StatefulWidget {
 class _BehrdNativeSwitchState extends State<BehrdNativeSwitch> {
   bool isLoading = true;
   late bool value;
+  late DeviceType targetPlatform;
 
   @override
   void initState() {
@@ -31,6 +31,11 @@ class _BehrdNativeSwitchState extends State<BehrdNativeSwitch> {
 
   void load() {
     value = widget.initialValue;
+    if (widget.targetPlatform == DeviceType.auto) {
+      targetPlatform = Platform.isIOS? DeviceType.iOS : DeviceType.android;
+    } else {
+      targetPlatform = widget.targetPlatform; // No need to determine platform.
+    }
     setState(() => isLoading = false);
   }
 
@@ -41,9 +46,8 @@ class _BehrdNativeSwitchState extends State<BehrdNativeSwitch> {
 
   @override
   Widget build(BuildContext context) {
-    if (isLoading) return BehrdNativeStaticLoading(targetPlatform: widget.targetPlatform, size: 50);
-
-    if (widget.targetPlatform == DeviceType.iOS) {
+    if (isLoading) return BehrdNativeStaticLoading(targetPlatform: targetPlatform, size: 50);
+    if (targetPlatform == DeviceType.iOS) {
       return CupertinoSwitch(
         value: value,
         onChanged: (val) => updateValue(val),
