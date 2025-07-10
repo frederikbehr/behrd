@@ -4,13 +4,13 @@ import 'package:behrd/src/utils/string_utils.dart';
 import 'package:flutter/material.dart';
 
 class CategoryCard extends StatelessWidget {
-  final DeviceType deviceType;
+  final DeviceType targetPlatform;
   final SettingsCategory category;
   final Function(SettingsCategory) onPressed;
 
   const CategoryCard({
     super.key,
-    required this.deviceType,
+    required this.targetPlatform,
     required this.category,
     required this.onPressed,
   });
@@ -51,7 +51,7 @@ class CategoryCard extends StatelessWidget {
               ],
             ),
 
-            Row(
+            !category.shouldUseShortcutWidget()? Row(
               children: [
                 Text(
                   StringUtils.firstLetterUpper(category.getPrimarySettingStringValue() ?? ""),
@@ -62,19 +62,19 @@ class CategoryCard extends StatelessWidget {
                 ),
                 const SizedBox(width: 12),
                 Icon(
-                  deviceType == DeviceType.android
+                  targetPlatform == DeviceType.android
                       ? Icons.arrow_forward
                       : Icons.arrow_forward_ios,
                   size: 20,
                   color: Theme.of(context).colorScheme.primary,
                 ),
               ],
-            ),
+            ) : category.settings.first.getShortcutWidget(targetPlatform),
           ],
         ),
       ),
     );
-    switch (deviceType) {
+    switch (targetPlatform) {
       case DeviceType.iOS: return GestureDetector(
         onTap: () => onPressed(category),
         behavior: HitTestBehavior.opaque,

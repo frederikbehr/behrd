@@ -9,4 +9,6 @@ abstract class Setting {
   double? get iconSize;
   String? getPrimaryStringValue();
   Widget getWidget(DeviceType targetPlatform);
+  Widget getShortcutWidget(DeviceType targetPlatform);
+  bool get shouldShowShortcutWidget;
 }

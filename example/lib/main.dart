@@ -36,7 +36,7 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   BehrdSettings settings = BehrdSettings(
     targetPlatform: DeviceType.iOS,
-    categories: [
+    groups: [
       SettingsCategoryGroup(
         categories: [
           SettingsCategory(title: "Notifications", icon: Icons.notifications, settings: [
@@ -57,8 +57,8 @@ class _MyHomePageState extends State<MyHomePage> {
               icon: Icons.notifications,
             ),
           ]),
-          SettingsCategory(title: "Theme", icon: Icons.dark_mode, settings: [
-            OnOffSetting(title: "Theme", value: true, onChanged: (val) {}, isPrimary: true, onHint: "Dark", offHint: "Light"),
+          SettingsCategory(title: "Dark mode", icon: Icons.dark_mode, settings: [
+            OnOffSetting(title: "Dark mode", value: false, onChanged: (val) {}, isPrimary: true, onHint: "Dark", offHint: "Light"),
           ]),
           SettingsCategory(title: "Language", icon: Icons.translate, settings: [
             StringSelectionSetting(title: "Language", selections: ["English", "Spanish"], onChanged: (val) {}, value: "English", isPrimary: true),

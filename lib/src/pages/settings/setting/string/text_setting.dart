@@ -18,6 +18,9 @@ class TextSetting implements Setting {
   @override
   final IconData? icon;
 
+  @override
+  final bool shouldShowShortcutWidget = false;
+
   String value;
 
   final Function(bool) onChanged;
@@ -36,5 +39,11 @@ class TextSetting implements Setting {
 
   @override
   Widget getWidget(DeviceType targetPlatform) => TextSettingWidget(setting: this);
+
+  @override
+  Widget getShortcutWidget(DeviceType targetPlatform) {
+    // TODO: implement getActionChild
+    throw UnimplementedError();
+  }
 
 }

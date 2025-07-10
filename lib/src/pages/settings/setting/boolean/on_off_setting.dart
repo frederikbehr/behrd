@@ -3,8 +3,6 @@ import 'package:behrd/src/pages/settings/setting/boolean/on_off_setting_widget.d
 import 'package:behrd/src/pages/settings/setting/setting.dart';
 import 'package:flutter/cupertino.dart';
 
-import 'on_off_setting_style.dart';
-
 class OnOffSetting implements Setting {
 
   @override
@@ -18,6 +16,9 @@ class OnOffSetting implements Setting {
 
   @override
   final double? iconSize;
+
+  @override
+  final bool shouldShowShortcutWidget = true;
 
   bool value;
 
@@ -43,5 +44,22 @@ class OnOffSetting implements Setting {
 
   @override
   Widget getWidget(DeviceType targetPlatform) => OnOffSettingWidget(setting: this, targetPlatform: targetPlatform);
+
+  @override
+  Widget getShortcutWidget(DeviceType targetPlatform) {
+    switch(style) {
+      case OnOffSettingStyle.nativeSwitch: return NativeSwitch(
+        targetPlatform: targetPlatform,
+        initialValue: value,
+        onChanged: (val) => onChanged(val),
+      );
+      case OnOffSettingStyle.checkBox: return NativeCheckbox(
+        targetPlatform: targetPlatform,
+        initialValue: value,
+        onChanged: (val) => onChanged(val),
+        size: 26,
+      );
+    }
+  }
 
 }

@@ -24,7 +24,7 @@ class OnOffSettingWidget extends StatelessWidget {
       ) : NativeCheckbox(
         targetPlatform: targetPlatform,
         initialValue: setting.value,
-        size: 28,
+        size: 26,
         onChanged: (val) => setting.onChanged(val),
       ),
     );

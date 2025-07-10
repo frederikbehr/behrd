@@ -66,7 +66,7 @@ class _SettingsPageState extends State<SettingsPage> {
                       itemBuilder: (BuildContext context, int i) {
                         return CategoryCard(
                           category: widget.groups[index].categories[i],
-                          deviceType: widget.targetPlatform,
+                          targetPlatform: widget.targetPlatform,
                           onPressed: (SettingsCategory category) {
                             HapticFeedback.lightImpact();
                             openSetting(category);

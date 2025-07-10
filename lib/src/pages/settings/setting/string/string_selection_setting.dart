@@ -18,6 +18,9 @@ class StringSelectionSetting implements Setting {
   @override
   final double? iconSize;
 
+  @override
+  final bool shouldShowShortcutWidget = false;
+
   String value;
   final List<String> selections;
 
@@ -38,5 +41,11 @@ class StringSelectionSetting implements Setting {
 
   @override
   Widget getWidget(DeviceType targetPlatform) => StringSelectionSettingWidget(setting: this);
+
+  @override
+  Widget getShortcutWidget(DeviceType targetPlatform) {
+    // TODO: implement getActionChild
+    throw UnimplementedError();
+  }
 
 }

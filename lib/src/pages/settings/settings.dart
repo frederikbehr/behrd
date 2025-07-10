@@ -11,13 +11,13 @@ import 'package:behrd/src/pages/settings/page/settings_scaffold.dart';
 class BehrdSettings implements Pages {
   @override
   final DeviceType targetPlatform;
-  final List<SettingsCategoryGroup> categories;
+  final List<SettingsCategoryGroup> groups;
   final String title;
 
   const BehrdSettings({
     this.targetPlatform = DeviceType.iOS,
     this.title = "Settings",
-    required this.categories,
+    required this.groups,
   });
 
   @override
@@ -33,7 +33,7 @@ class BehrdSettings implements Pages {
       SettingsPage(
         title: title,
         targetPlatform: useCupertino? DeviceType.iOS : DeviceType.android,
-        groups: categories,
+        groups: groups,
       ),
       useCupertino: useCupertino,
     );

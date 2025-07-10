@@ -29,4 +29,5 @@ class SettingsCategory {
     return settings[index].getPrimaryStringValue();
   }
 
+  bool shouldUseShortcutWidget() => settings.length == 1 && settings.first.shouldShowShortcutWidget;
 }
