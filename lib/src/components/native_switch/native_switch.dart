@@ -46,7 +46,7 @@ class _BehrdNativeSwitchState extends State<BehrdNativeSwitch> {
 
   @override
   Widget build(BuildContext context) {
-    if (isLoading) return BehrdNativeStaticLoading(targetPlatform: targetPlatform, size: 50);
+    if (isLoading) return SizedBox();
     if (targetPlatform == DeviceType.iOS) {
       return CupertinoSwitch(
         value: value,

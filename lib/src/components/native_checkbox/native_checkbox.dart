@@ -50,7 +50,7 @@ class _BehrdNativeCheckboxState extends State<BehrdNativeCheckbox> {
 
   @override
   Widget build(BuildContext context) {
-    if (isLoading) return BehrdNativeStaticLoading(targetPlatform: widget.targetPlatform, size: 50);
+    if (isLoading) return SizedBox();
 
     return Transform.scale(
       scale: getScale(),
