@@ -15,9 +15,15 @@ class CategoryCard extends StatelessWidget {
     required this.onPressed,
   });
 
+  void open() {
+    if (!category.shouldUseShortcutWidget()) {
+      onPressed(category);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
-    Widget buttonContent = SizedBox(
+    final Widget buttonContent = SizedBox(
       width: MediaQuery.of(context).size.width,
       child: Padding(
         padding: EdgeInsets.symmetric(vertical: 12, horizontal: 16),
@@ -76,18 +82,14 @@ class CategoryCard extends StatelessWidget {
     );
     switch (targetPlatform) {
       case DeviceType.iOS: return GestureDetector(
-        onTap: () => onPressed(category),
+        onTap: () => open(),
         behavior: HitTestBehavior.opaque,
         child: buttonContent,
       );
       case DeviceType.android: return Material(
         color: Colors.transparent,
         child: InkWell(
-          onTap: () {
-            if (!category.shouldUseShortcutWidget()) {
-              onPressed(category);
-            }
-          },
+          onTap: () => open(),
           child: buttonContent,
         ),
       );
