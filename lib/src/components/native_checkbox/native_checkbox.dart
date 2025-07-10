@@ -1,14 +1,15 @@
 import 'package:behrd/behrd.dart';
-import 'package:behrd/src/components/loading/static_loading.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class NativeCheckbox extends StatefulWidget {
+import '../loading/native_static_loading.dart';
+
+class BehrdNativeCheckbox extends StatefulWidget {
   final DeviceType targetPlatform;
   final bool initialValue;
   final Function(bool) onChanged;
   final double size;
-  const NativeCheckbox({
+  const BehrdNativeCheckbox({
     super.key,
     required this.targetPlatform,
     required this.initialValue,
@@ -17,10 +18,10 @@ class NativeCheckbox extends StatefulWidget {
   });
 
   @override
-  State<NativeCheckbox> createState() => _NativeCheckboxState();
+  State<BehrdNativeCheckbox> createState() => _BehrdNativeCheckboxState();
 }
 
-class _NativeCheckboxState extends State<NativeCheckbox> {
+class _BehrdNativeCheckboxState extends State<BehrdNativeCheckbox> {
   bool isLoading = true;
   late bool value;
 
@@ -44,7 +45,7 @@ class _NativeCheckboxState extends State<NativeCheckbox> {
 
   @override
   Widget build(BuildContext context) {
-    if (isLoading) return StaticLoading(targetPlatform: widget.targetPlatform, size: 50);
+    if (isLoading) return BehrdNativeStaticLoading(targetPlatform: widget.targetPlatform, size: 50);
 
     return Transform.scale(
       scale: getScale(),

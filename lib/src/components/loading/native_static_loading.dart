@@ -2,10 +2,10 @@ import 'package:behrd/behrd.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class StaticLoading extends StatelessWidget {
+class BehrdNativeStaticLoading extends StatelessWidget {
   final DeviceType targetPlatform;
   final double size;
-  const StaticLoading({
+  const BehrdNativeStaticLoading({
     super.key,
     required this.targetPlatform,
     required this.size,
@@ -16,7 +16,7 @@ class StaticLoading extends StatelessWidget {
     if (targetPlatform == DeviceType.iOS) {
       return CupertinoActivityIndicator(radius: size / 2);
     } else {
-      return SizedBox(width: size, child: CircularProgressIndicator(strokeWidth: size / 10));
+      return SizedBox(width: size, height: size, child: CircularProgressIndicator(strokeWidth: size / 10));
     }
   }
 }

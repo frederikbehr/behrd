@@ -17,11 +17,11 @@ class OnOffSettingWidget extends StatelessWidget {
     return SettingCard(
       targetPlatform: targetPlatform,
       setting: setting,
-      child: setting.style == OnOffSettingStyle.nativeSwitch? NativeSwitch(
+      child: setting.style == OnOffSettingStyle.nativeSwitch? BehrdNativeSwitch(
         targetPlatform: targetPlatform,
         initialValue: setting.value,
         onChanged: (val) => setting.onChanged(val),
-      ) : NativeCheckbox(
+      ) : BehrdNativeCheckbox(
         targetPlatform: targetPlatform,
         initialValue: setting.value,
         size: 26,

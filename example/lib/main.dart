@@ -19,13 +19,14 @@ class MyApp extends StatelessWidget {
           brightness: Brightness.light,
         ),
       ),
-      home: const MyHomePage(title: 'Behrd Example'),
+      home: const MyHomePage(title: 'Behrd Example', targetPlatform: DeviceType.iOS),
     );
   }
 }
 
 class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
+  final DeviceType targetPlatform;
+  const MyHomePage({super.key, required this.title, required this.targetPlatform});
 
   final String title;
 
@@ -34,8 +35,9 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  BehrdSettings settings = BehrdSettings(
-    targetPlatform: DeviceType.iOS,
+
+  late final BehrdSettings settings = BehrdSettings(
+    targetPlatform: widget.targetPlatform,
     groups: [
       SettingsCategoryGroup(
         categories: [
@@ -88,6 +90,14 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                BehrdNativeStaticLoading(targetPlatform: DeviceType.iOS, size: 24),
+                BehrdNativeStaticLoading(targetPlatform: DeviceType.android, size: 24),
+              ],
+            ),
+            const SizedBox(height: 24),
             ElevatedButton(onPressed: () => settings.open(context), child: Text("Open settings")),
           ],
         ),

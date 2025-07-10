@@ -48,12 +48,12 @@ class OnOffSetting implements Setting {
   @override
   Widget getShortcutWidget(DeviceType targetPlatform) {
     switch(style) {
-      case OnOffSettingStyle.nativeSwitch: return NativeSwitch(
+      case OnOffSettingStyle.nativeSwitch: return BehrdNativeSwitch(
         targetPlatform: targetPlatform,
         initialValue: value,
         onChanged: (val) => onChanged(val),
       );
-      case OnOffSettingStyle.checkBox: return NativeCheckbox(
+      case OnOffSettingStyle.checkBox: return BehrdNativeCheckbox(
         targetPlatform: targetPlatform,
         initialValue: value,
         onChanged: (val) => onChanged(val),
