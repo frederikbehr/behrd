@@ -1,6 +1,6 @@
 import 'package:behrd/behrd.dart';
 import 'package:behrd/src/components/native_checkbox/native_checkbox.dart';
-import 'package:behrd/src/pages/settings/page/components/setting_card.dart';
+import 'package:behrd/src/pages/settings/setting/setting_card.dart';
 import 'package:flutter/material.dart';
 
 class OnOffSettingWidget extends StatelessWidget {

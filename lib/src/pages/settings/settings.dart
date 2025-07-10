@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:behrd/src/utils/device_type.dart';
 import 'package:behrd/src/pages/pages.dart';
-import 'package:behrd/src/pages/settings/page/settings_scaffold.dart';
+import 'package:behrd/src/pages/settings/settings_scaffold.dart';
 
 class BehrdSettings implements Pages {
   @override

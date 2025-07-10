@@ -1,12 +1,12 @@
 import 'package:behrd/src/pages/settings/group/settings_category_group.dart';
-import 'package:behrd/src/pages/settings/page/components/category_card.dart';
-import 'package:behrd/src/pages/settings/page/setting_page.dart';
+import 'package:behrd/src/pages/settings/category/category_card.dart';
+import 'package:behrd/src/pages/settings/setting/setting_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-import '../../../utils/device_type.dart';
-import '../../../utils/navigator_utils.dart';
-import '../category/settings_category.dart';
+import '../../utils/device_type.dart';
+import '../../utils/navigator_utils.dart';
+import 'category/settings_category.dart';
 
 class SettingsPage extends StatefulWidget {
   final DeviceType targetPlatform;
