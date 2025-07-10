@@ -15,7 +15,7 @@ class OnOffSettingWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SettingCard(
-      deviceType: targetPlatform,
+      targetPlatform: targetPlatform,
       setting: setting,
       child: setting.style == OnOffSettingStyle.nativeSwitch? NativeSwitch(
         targetPlatform: targetPlatform,

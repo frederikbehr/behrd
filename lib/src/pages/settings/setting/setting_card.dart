@@ -3,19 +3,20 @@ import 'package:behrd/src/utils/device_type.dart';
 import 'package:flutter/material.dart';
 
 class SettingCard extends StatelessWidget {
-  final DeviceType deviceType;
+  final DeviceType targetPlatform;
   final Setting setting;
   final Widget child;
 
   const SettingCard({
     super.key,
-    required this.deviceType,
+    required this.targetPlatform,
     required this.setting,
     required this.child,
   });
 
   @override
   Widget build(BuildContext context) {
+    bool isCupertino() => targetPlatform == DeviceType.iOS;
     return SizedBox(
       width: MediaQuery.of(context).size.width,
       child: Padding(
