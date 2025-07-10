@@ -1,3 +1,4 @@
+import 'package:behrd/src/components/native_app_bar/native_app_bar.dart';
 import 'package:behrd/src/pages/settings/group/settings_category_group.dart';
 import 'package:behrd/src/pages/settings/category/category_card.dart';
 import 'package:behrd/src/pages/settings/setting/setting_page.dart';
@@ -12,12 +13,14 @@ class SettingsPage extends StatefulWidget {
   final DeviceType targetPlatform;
   final List<SettingsCategoryGroup> groups;
   final String title;
+  final String? previousPageTitle;
 
   const SettingsPage({
     super.key,
     required this.targetPlatform,
     required this.groups,
     required this.title,
+    this.previousPageTitle,
   });
 
   @override
@@ -30,7 +33,7 @@ class _SettingsPageState extends State<SettingsPage> {
     final bool usingCupertino = widget.targetPlatform == DeviceType.iOS;
     return NavigatorUtils.openWithRoute(
       context,
-      SettingPage(category: category, targetPlatform: widget.targetPlatform),
+      SettingPage(category: category, targetPlatform: widget.targetPlatform, previousPageTitle: widget.title),
       useCupertino: usingCupertino,
     );
   }
@@ -38,9 +41,7 @@ class _SettingsPageState extends State<SettingsPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(widget.title),
-      ),
+      appBar: BehrdNativeAppBar(title: widget.title, previousPageTitle: widget.previousPageTitle),
       body: SingleChildScrollView(
         child: Column(
           children: [

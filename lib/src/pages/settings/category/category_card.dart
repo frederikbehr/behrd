@@ -1,6 +1,7 @@
 import 'package:behrd/src/pages/settings/category/settings_category.dart';
 import 'package:behrd/src/utils/device_type.dart';
 import 'package:behrd/src/utils/string_utils.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class CategoryCard extends StatelessWidget {
@@ -67,13 +68,12 @@ class CategoryCard extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(width: 12),
-                Icon(
-                  targetPlatform == DeviceType.android
-                      ? Icons.arrow_forward
-                      : Icons.arrow_forward_ios,
+                targetPlatform == DeviceType.android
+                    ? Icon(
+                  Icons.arrow_forward,
                   size: 20,
                   color: Theme.of(context).colorScheme.primary,
-                ),
+                ) : CupertinoListTileChevron(),
               ],
             ) : category.settings.first.getShortcutWidget(targetPlatform),
           ],

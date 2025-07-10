@@ -13,11 +13,13 @@ class BehrdSettings implements Pages {
   final DeviceType targetPlatform;
   final List<SettingsCategoryGroup> groups;
   final String title;
+  final String? previousPageTitle;
 
   const BehrdSettings({
     this.targetPlatform = DeviceType.iOS,
     this.title = "Settings",
     required this.groups,
+    this.previousPageTitle,
   });
 
   @override
@@ -34,6 +36,7 @@ class BehrdSettings implements Pages {
         title: title,
         targetPlatform: useCupertino? DeviceType.iOS : DeviceType.android,
         groups: groups,
+        previousPageTitle: previousPageTitle,
       ),
       useCupertino: useCupertino,
     );
