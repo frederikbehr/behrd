@@ -83,7 +83,11 @@ class CategoryCard extends StatelessWidget {
       case DeviceType.android: return Material(
         color: Colors.transparent,
         child: InkWell(
-          onTap: () => onPressed(category),
+          onTap: () {
+            if (!category.shouldUseShortcutWidget()) {
+              onPressed(category);
+            }
+          },
           child: buttonContent,
         ),
       );
