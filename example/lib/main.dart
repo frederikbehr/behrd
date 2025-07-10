@@ -35,7 +35,7 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   BehrdSettings settings = BehrdSettings(
-    targetPlatform: DeviceType.auto,
+    targetPlatform: DeviceType.android,
     categories: [
       SettingsCategoryGroup(
         categories: [
@@ -73,7 +73,7 @@ class _MyHomePageState extends State<MyHomePage> {
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
+          children: [
             ElevatedButton(onPressed: () => settings.open(context), child: Text("Open settings")),
           ],
         ),

@@ -44,7 +44,7 @@ class CategoryCard extends StatelessWidget {
                 Text(
                   category.title,
                   style: category.textStyle ?? TextStyle(
-                    fontSize: 18,
+                    fontSize: 16,
                   ),
                 )
 
@@ -56,11 +56,11 @@ class CategoryCard extends StatelessWidget {
                 Text(
                   StringUtils.firstLetterUpper(category.getPrimarySettingStringValue() ?? ""),
                   style: TextStyle(
-                    fontSize: 14,
+                    fontSize: 12,
                     color: Theme.of(context).colorScheme.onSurface.withAlpha(101),
                   ),
                 ),
-                const SizedBox(width: 8),
+                const SizedBox(width: 12),
                 Icon(
                   deviceType == DeviceType.android
                       ? Icons.arrow_forward

@@ -1,4 +1,8 @@
 import 'package:behrd/src/pages/settings/setting/setting.dart';
+import 'package:behrd/src/pages/settings/setting/string/string_selection_setting_widget.dart';
+import 'package:flutter/cupertino.dart';
+
+import '../../../../../behrd.dart';
 
 class StringSelectionSetting implements Setting {
 
@@ -7,6 +11,12 @@ class StringSelectionSetting implements Setting {
 
   @override
   final String title;
+
+  @override
+  final IconData? icon;
+
+  @override
+  final double? iconSize;
 
   String value;
   final List<String> selections;
@@ -19,9 +29,14 @@ class StringSelectionSetting implements Setting {
     this.isPrimary = false,
     required this.onChanged,
     required this.value,
+    this.icon,
+    this.iconSize,
   });
 
   @override
   String? getPrimaryStringValue() => value;
+
+  @override
+  Widget getWidget(DeviceType targetPlatform) => StringSelectionSettingWidget(setting: this);
 
 }
