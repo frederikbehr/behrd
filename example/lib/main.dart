@@ -11,15 +11,31 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Behrd Demo',
+      themeMode: ThemeMode.dark,
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        dividerColor: Colors.grey.shade300,
-        colorScheme: ColorScheme.fromSeed(
-          seedColor: Colors.blue.shade700,
-          brightness: Brightness.light,
+      darkTheme: ThemeData(
+        brightness: Brightness.dark,
+        scaffoldBackgroundColor: Colors.black,
+        dividerColor: Colors.grey.shade900,
+        colorScheme: ColorScheme.dark(
+          primary: Colors.red.shade600,
+          secondary: Colors.yellow.shade700,
+        ),
+        appBarTheme: const AppBarTheme(
+          backgroundColor: Colors.black,
+          foregroundColor: Colors.white,
+          iconTheme: IconThemeData(color: Colors.white),
+          titleTextStyle: TextStyle(color: Colors.white, fontSize: 20),
         ),
       ),
-      home: const MyHomePage(title: 'Behrd Example', targetPlatform: DeviceType.iOS),
+      theme: ThemeData(
+        brightness: Brightness.light,
+        dividerColor: Colors.grey.shade300,
+        colorScheme: ColorScheme.fromSeed(
+          seedColor: Colors.grey,
+        ),
+      ),
+      home: const MyHomePage(title: 'Behrd Example', targetPlatform: DeviceType.auto),
     );
   }
 }
@@ -73,13 +89,26 @@ class _MyHomePageState extends State<MyHomePage> {
               cupertinoStyle: StringSelectionSettingCupertinoStyle.check,
             ),
           ]),
+          SettingsCategory(title: "Info", icon: Icons.info, settings: [
+            InfoSetting(
+              title: "Version",
+              value: "0.0.1",
+              isPrimary: true,
+            ),
+            InfoSetting(
+              title: "Updated",
+              value: "January 27th, 2025",
+              isPrimary: true,
+            ),
+          ]),
         ],
         title: "App",
       ),
       SettingsCategoryGroup(
         categories: [
           SettingsCategory(title: "Account", icon: Icons.account_circle, settings: [
-            TextSetting(title: "First name", onChanged: (val) {}, value: "Frederik", isPrimary: true, icon: Icons.person),
+            TextSetting(title: "First name", onChanged: (val) {}, value: "John", isPrimary: true, icon: Icons.person),
+            TextSetting(title: "Last name", onChanged: (val) {}, value: "Doe", isPrimary: true, icon: Icons.person),
           ]),
         ],
         title: "Account",

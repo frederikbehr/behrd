@@ -1,16 +1,23 @@
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
 
 class ColorUtils {
   static Brightness determineBrightnessFromColor(Color color) => ThemeData.estimateBrightnessForColor(color);
 
-  static Color getTextColorFromBackgroundColor(Color backgroundColor) {
-    final Brightness brightness = determineBrightnessFromColor(backgroundColor);
+  static Color getTitleColorFromTheme(BuildContext context) {
+    final Brightness brightness = Theme.of(context).brightness;
     if (brightness == Brightness.light) {
       return Colors.black87;
     } else {
       return Colors.white;
+    }
+  }
+
+  static Color getBodyColorFromTheme(BuildContext context) {
+    final Brightness brightness = Theme.of(context).brightness;
+    if (brightness == Brightness.light) {
+      return Colors.black54;
+    } else {
+      return Colors.white70;
     }
   }
 }

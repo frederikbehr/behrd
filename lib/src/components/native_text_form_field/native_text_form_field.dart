@@ -1,5 +1,6 @@
 import 'package:behrd/behrd.dart';
 import 'package:behrd/src/ios_components/cupertino_prefix_widget.dart';
+import 'package:behrd/src/utils/color_utils.dart';
 import 'package:behrd/src/utils/target_platform_utils.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -58,6 +59,7 @@ class BehrdNativeTextField extends StatelessWidget {
         focusNode: focusNode,
         controller: controller,
         textInputAction: TextInputAction.go,
+        style: TextStyle(color: ColorUtils.getBodyColorFromTheme(context)),
         onFieldSubmitted: (val) => onSubmitted(),
         obscureText: obscureText ?? false,
         validator: validator,

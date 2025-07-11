@@ -40,12 +40,17 @@ class BehrdNativeAppBar extends StatelessWidget implements PreferredSizeWidget {
     final DeviceType platform = TargetPlatformUtils.determinePlatform(targetPlatform);
     if (platform == DeviceType.iOS) {
       return CupertinoNavigationBar(
-        backgroundColor: backgroundColor,
+        backgroundColor: backgroundColor ?? Theme.of(context).appBarTheme.backgroundColor,
         previousPageTitle: previousPageTitle,
         trailing: actions == null? null : Row(mainAxisSize: MainAxisSize.min, children: List.of(actions!)),
         leading: leading,
-        border: bottomBorder == true || bottomBorder == null? Border.all(color: Theme.of(context).dividerColor, width: 1) : null,
-        middle: titleReplacement ?? Text(title),
+        border: bottomBorder == true || bottomBorder == null? Border(bottom: BorderSide(color: Theme.of(context).dividerColor, width: 1)) : null,
+        middle: titleReplacement ?? Text(
+          title,
+          style: TextStyle(
+            color: ColorUtils.getTitleColorFromTheme(context),
+          ),
+        ),
       );
     } else {
       return AppBar(
@@ -54,13 +59,13 @@ class BehrdNativeAppBar extends StatelessWidget implements PreferredSizeWidget {
         elevation: 5.0,
         actions: actions,
         iconTheme: IconThemeData(
-          color: ColorUtils.getTextColorFromBackgroundColor(backgroundColor ?? Theme.of(context).colorScheme.primary),
+          color: ColorUtils.getTitleColorFromTheme(context),
         ),
         leading: leading,
         title: titleReplacement ?? Text(
           title,
           style: TextStyle(
-            color: ColorUtils.getTextColorFromBackgroundColor(backgroundColor ?? Theme.of(context).colorScheme.primary),
+            color: ColorUtils.getTitleColorFromTheme(context),
           ),
         ),
         bottom: bottomBorder == true? PreferredSize(
