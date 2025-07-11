@@ -15,3 +15,5 @@ export 'src/components/native_app_bar/native_app_bar.dart';
 export 'src/pages/settings/setting/string/string_selection_setting_style.dart';
 export 'src/pages/settings/setting/string/info_setting.dart';
 export 'src/pages/settings/setting/button/action_setting.dart';
+export 'src/components/buttons/native_text_button.dart';
+export 'src/components/native_app_bar/native_sliver_app_bar.dart';

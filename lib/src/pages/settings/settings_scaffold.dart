@@ -58,6 +58,7 @@ class _SettingsPageState extends State<SettingsPage> {
               itemBuilder: (BuildContext context, int index) {
                 if (widget.targetPlatform == DeviceType.iOS) {
                   return CupertinoFormSection(
+                    backgroundColor: Theme.of(context).scaffoldBackgroundColor,
                     header: widget.groups[index].title != null? Text(widget.groups[index].title!) : null,
                     children: widget.groups[index].categories.map((category) {
                       return CategoryCard(

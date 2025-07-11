@@ -17,9 +17,9 @@ class MyApp extends StatelessWidget {
         brightness: Brightness.dark,
         scaffoldBackgroundColor: Colors.black,
         dividerColor: Colors.grey.shade900,
-        colorScheme: ColorScheme.dark(
-          primary: Colors.red.shade600,
-          secondary: Colors.yellow.shade700,
+        colorScheme: ColorScheme.fromSeed(
+          brightness: Brightness.dark,
+          seedColor: Colors.green.shade700,
         ),
         appBarTheme: const AppBarTheme(
           backgroundColor: Colors.black,
@@ -32,7 +32,8 @@ class MyApp extends StatelessWidget {
         brightness: Brightness.light,
         dividerColor: Colors.grey.shade300,
         colorScheme: ColorScheme.fromSeed(
-          seedColor: Colors.grey,
+          brightness: Brightness.light,
+          seedColor: Colors.green.shade700,
         ),
       ),
       home: const MyHomePage(title: 'Behrd Example', targetPlatform: DeviceType.auto),
@@ -79,13 +80,21 @@ class _MyHomePageState extends State<MyHomePage> {
           SettingsCategory(title: "Dark mode", icon: Icons.dark_mode, settings: [
             OnOffSetting(title: "Dark mode", value: false, onChanged: (val) {}, isPrimary: true, onHint: "Dark", offHint: "Light"),
           ]),
-          SettingsCategory(title: "Language", icon: Icons.translate, settings: [
+          SettingsCategory(title: "Language & Region", icon: Icons.translate, settings: [
             StringSelectionSetting(
-              title: "Language",
+              title: "System language",
               selections: ["English", "Spanish", "Danish", "French"],
               onChanged: (val) {},
               value: "English",
               isPrimary: true,
+              cupertinoStyle: StringSelectionSettingCupertinoStyle.check,
+            ),
+            StringSelectionSetting(
+              title: "Region",
+              selections: ["Great Britain", "United States", "Denmark", "France"],
+              onChanged: (val) {},
+              value: "Denmark",
+              isPrimary: false,
               cupertinoStyle: StringSelectionSettingCupertinoStyle.check,
             ),
           ]),
@@ -119,22 +128,35 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: BehrdNativeAppBar(title: "Home", targetPlatform: widget.targetPlatform),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                BehrdNativeStaticLoading(targetPlatform: DeviceType.iOS, size: 24),
-                BehrdNativeStaticLoading(targetPlatform: DeviceType.android, size: 24),
-              ],
+      //appBar: BehrdNativeAppBar(title: "Home", targetPlatform: widget.targetPlatform),
+     //appBar: BehrdNativeSliverAppBar(title: "Home", targetPlatform: widget.targetPlatform),
+      body: CustomScrollView(
+        slivers: [
+          BehrdNativeSliverAppBar(title: "Home", targetPlatform: widget.targetPlatform),
+          SliverToBoxAdapter(
+            child: Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  const SizedBox(height: 96),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      BehrdNativeStaticLoading(targetPlatform: DeviceType.iOS, size: 24),
+                      BehrdNativeStaticLoading(targetPlatform: DeviceType.android, size: 24),
+                    ],
+                  ),
+                  const SizedBox(height: 24),
+                  BehrdNativeTextButton(
+                    title: "Open settings",
+                    targetPlatform: widget.targetPlatform,
+                    onPressed: () => settings.open(context),
+                  ),
+                ],
+              ),
             ),
-            const SizedBox(height: 24),
-            ElevatedButton(onPressed: () => settings.open(context), child: Text("Open settings")),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

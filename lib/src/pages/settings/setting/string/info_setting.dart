@@ -23,7 +23,7 @@ class InfoSetting implements Setting {
   final Color? iconColor;
 
   @override
-  final bool shouldShowShortcutWidget = false;
+  final bool shouldShowShortcutWidget = true;
 
   String value;
 

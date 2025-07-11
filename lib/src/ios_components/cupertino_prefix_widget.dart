@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 
 class CupertinoPrefixWidget extends StatelessWidget {
   final IconData icon;
@@ -17,7 +18,10 @@ class CupertinoPrefixWidget extends StatelessWidget {
             color: color ?? CupertinoColors.systemBlue,
             borderRadius: BorderRadius.circular(4.0),
           ),
-          child: Icon(icon, color: CupertinoColors.white),
+          child: Icon(
+            icon,
+            color: Theme.of(context).brightness == Brightness.light? Colors.white : Colors.black54,
+          ),
         ),
         const SizedBox(width: 15),
         Text(title),

@@ -25,6 +25,7 @@ class SettingPage extends StatelessWidget {
         child: Column(
           children: [
             targetPlatform == DeviceType.iOS? CupertinoFormSection(
+              backgroundColor: Theme.of(context).scaffoldBackgroundColor,
               children: category.settings.map((setting) {
                 return setting.getWidget(targetPlatform);
               }).toList(),
