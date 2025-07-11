@@ -1,7 +1,7 @@
 import 'package:behrd/behrd.dart';
+import 'package:behrd/src/utils/target_platform_utils.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'dart:io' show Platform;
 
 class BehrdNativeCheckbox extends StatefulWidget {
   final DeviceType targetPlatform;
@@ -33,11 +33,7 @@ class _BehrdNativeCheckboxState extends State<BehrdNativeCheckbox> {
 
   void load() {
     value = widget.initialValue;
-    if (widget.targetPlatform == DeviceType.auto) {
-      targetPlatform = Platform.isIOS? DeviceType.iOS : DeviceType.android;
-    } else {
-      targetPlatform = widget.targetPlatform; // No need to determine platform.
-    }
+    targetPlatform = TargetPlatformUtils.determinePlatform(widget.targetPlatform);
     setState(() => isLoading = false);
   }
 
@@ -55,7 +51,7 @@ class _BehrdNativeCheckboxState extends State<BehrdNativeCheckbox> {
       height: widget.size,
       child: Transform.scale(
         scale: getScale(),
-        child: widget.targetPlatform == DeviceType.iOS? CupertinoCheckbox(
+        child: targetPlatform == DeviceType.iOS? CupertinoCheckbox(
           value: value,
           onChanged: (val) {
             if (val != null) updateValue(val);

@@ -42,7 +42,7 @@ class TextSetting implements Setting {
   String? getPrimaryStringValue() => value;
 
   @override
-  Widget getWidget(DeviceType targetPlatform) => TextSettingWidget(setting: this);
+  Widget getWidget(DeviceType targetPlatform) => TextSettingWidget(setting: this, targetPlatform: targetPlatform);
 
   @override
   Widget getShortcutWidget(DeviceType targetPlatform) {

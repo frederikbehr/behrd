@@ -44,7 +44,7 @@ class _MyHomePageState extends State<MyHomePage> {
         categories: [
           SettingsCategory(title: "Notifications", icon: Icons.notifications, settings: [
             OnOffSetting(
-              title: "Receive emails",
+              title: "Email reminders",
               value: true,
               onChanged: (val) {},
               isPrimary: true,
@@ -52,7 +52,7 @@ class _MyHomePageState extends State<MyHomePage> {
               icon: Icons.email,
             ),
             OnOffSetting(
-              title: "Receive Push Notifications",
+              title: "Push Notifications",
               value: false,
               onChanged: (val) {},
               isPrimary: true,
@@ -66,7 +66,7 @@ class _MyHomePageState extends State<MyHomePage> {
           SettingsCategory(title: "Language", icon: Icons.translate, settings: [
             StringSelectionSetting(
               title: "Language",
-              selections: ["English", "Spanish"],
+              selections: ["English", "Spanish", "Danish", "French"],
               onChanged: (val) {},
               value: "English",
               isPrimary: true,
@@ -79,7 +79,7 @@ class _MyHomePageState extends State<MyHomePage> {
       SettingsCategoryGroup(
         categories: [
           SettingsCategory(title: "Account", icon: Icons.account_circle, settings: [
-            TextSetting(title: "Name", onChanged: (val) {}, value: "John Doe", isPrimary: true),
+            TextSetting(title: "First name", onChanged: (val) {}, value: "Frederik", isPrimary: true, icon: Icons.person),
           ]),
         ],
         title: "Account",

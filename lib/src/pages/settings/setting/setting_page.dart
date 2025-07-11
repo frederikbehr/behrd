@@ -33,7 +33,10 @@ class SettingPage extends StatelessWidget {
               itemCount: category.settings.length,
               shrinkWrap: true,
               itemBuilder: (BuildContext context, int index) {
-                return category.settings[index].getWidget(targetPlatform);
+                return Padding(
+                  padding: const EdgeInsetsDirectional.only(top: 8.0),
+                  child: category.settings[index].getWidget(targetPlatform),
+                );
               },
             ),
           ],

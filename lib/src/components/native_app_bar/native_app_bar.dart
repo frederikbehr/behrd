@@ -1,6 +1,7 @@
 import 'dart:io' show Platform;
 import 'package:behrd/behrd.dart';
 import 'package:behrd/src/utils/color_utils.dart';
+import 'package:behrd/src/utils/target_platform_utils.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -36,12 +37,7 @@ class BehrdNativeAppBar extends StatelessWidget implements PreferredSizeWidget {
 
   @override
   Widget build(BuildContext context) {
-    late final DeviceType platform;
-    if (targetPlatform == DeviceType.auto) {
-      platform = Platform.isIOS? DeviceType.iOS : DeviceType.android;
-    } else {
-      platform = targetPlatform;
-    }
+    final DeviceType platform = TargetPlatformUtils.determinePlatform(targetPlatform);
     if (platform == DeviceType.iOS) {
       return CupertinoNavigationBar(
         backgroundColor: backgroundColor,
