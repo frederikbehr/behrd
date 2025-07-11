@@ -80,6 +80,7 @@ class CategoryCard extends StatelessWidget {
           onTap: () => open(),
           child: SizedBox(
             width: MediaQuery.of(context).size.width,
+            height: 60,
             child: Padding(
               padding: EdgeInsets.symmetric(vertical: 12, horizontal: 16),
               child: Row(

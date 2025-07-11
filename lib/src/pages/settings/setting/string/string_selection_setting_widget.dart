@@ -41,6 +41,7 @@ class _StringSelectionSettingWidgetState extends State<StringSelectionSettingWid
     if (widget.targetPlatform == DeviceType.iOS) {
       return CupertinoFormSection(
         header: Text(widget.setting.title),
+        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
         children: widget.setting.selections.map((selection) {
           return GestureDetector(
             onTap: () => updateValue(selection),

@@ -19,7 +19,7 @@ class MyApp extends StatelessWidget {
           brightness: Brightness.light,
         ),
       ),
-      home: const MyHomePage(title: 'Behrd Example', targetPlatform: DeviceType.android),
+      home: const MyHomePage(title: 'Behrd Example', targetPlatform: DeviceType.iOS),
     );
   }
 }
