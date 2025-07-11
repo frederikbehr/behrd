@@ -51,18 +51,21 @@ class _BehrdNativeCheckboxState extends State<BehrdNativeCheckbox> {
   @override
   Widget build(BuildContext context) {
     if (isLoading) return SizedBox();
-    return Transform.scale(
-      scale: getScale(),
-      child: widget.targetPlatform == DeviceType.iOS? CupertinoCheckbox(
-        value: value,
-        onChanged: (val) {
-          if (val != null) updateValue(val);
-        },
-      ) : Checkbox(
-        value: value,
-        onChanged: (val) {
-          if (val != null) updateValue(val);
-        },
+    return SizedBox(
+      height: widget.size,
+      child: Transform.scale(
+        scale: getScale(),
+        child: widget.targetPlatform == DeviceType.iOS? CupertinoCheckbox(
+          value: value,
+          onChanged: (val) {
+            if (val != null) updateValue(val);
+          },
+        ) : Checkbox(
+          value: value,
+          onChanged: (val) {
+            if (val != null) updateValue(val);
+          },
+        ),
       ),
     );
   }

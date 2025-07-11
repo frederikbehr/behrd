@@ -7,6 +7,7 @@ abstract class Setting {
   bool get isPrimary;
   IconData? get icon;
   double? get iconSize;
+  Color? get iconColor;
   String? getPrimaryStringValue();
   Widget getWidget(DeviceType targetPlatform);
   Widget getShortcutWidget(DeviceType targetPlatform);

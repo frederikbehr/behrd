@@ -3,24 +3,23 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'dart:io' show Platform;
 
-class BehrdNativeSwitch extends StatefulWidget {
+class BehrdNativeRadio extends StatefulWidget {
   final DeviceType targetPlatform;
-  final bool initialValue;
-  final Function(bool) onChanged;
-  const BehrdNativeSwitch({
+  final bool isOn;
+  final double size;
+  const BehrdNativeRadio({
     super.key,
     required this.targetPlatform,
-    required this.initialValue,
-    required this.onChanged,
+    required this.isOn,
+    required this.size,
   });
 
   @override
-  State<BehrdNativeSwitch> createState() => _BehrdNativeSwitchState();
+  State<BehrdNativeRadio> createState() => _BehrdNativeRadioState();
 }
 
-class _BehrdNativeSwitchState extends State<BehrdNativeSwitch> {
+class _BehrdNativeRadioState extends State<BehrdNativeRadio> {
   bool isLoading = true;
-  late bool value;
   late DeviceType targetPlatform;
 
   @override
@@ -30,7 +29,6 @@ class _BehrdNativeSwitchState extends State<BehrdNativeSwitch> {
   }
 
   void load() {
-    value = widget.initialValue;
     if (widget.targetPlatform == DeviceType.auto) {
       targetPlatform = Platform.isIOS? DeviceType.iOS : DeviceType.android;
     } else {
@@ -39,27 +37,22 @@ class _BehrdNativeSwitchState extends State<BehrdNativeSwitch> {
     setState(() => isLoading = false);
   }
 
-  void updateValue(bool newValue) {
-    setState(() => value = newValue);
-    widget.onChanged(newValue);
-  }
-
   @override
   Widget build(BuildContext context) {
     if (isLoading) return SizedBox();
-    if (targetPlatform == DeviceType.iOS) {
-      return SizedBox(
-        height: 26,
-        child: CupertinoSwitch(
-          value: value,
-          onChanged: (val) => updateValue(val),
+    return SizedBox(
+      height: widget.size,
+      child: IgnorePointer(
+        child: widget.targetPlatform == DeviceType.iOS? CupertinoRadio(
+          value: true,
+          groupValue: widget.isOn,
+          onChanged: (_) {},
+        ) : Radio(
+          value: true,
+          groupValue: widget.isOn,
+          onChanged: (_) {},
         ),
-      );
-    } else {
-      return Switch(
-        value: value,
-        onChanged: (val) => updateValue(val),
-      );
-    }
+      ),
+    );
   }
 }

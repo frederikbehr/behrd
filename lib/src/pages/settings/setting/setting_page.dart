@@ -1,4 +1,5 @@
 import 'package:behrd/behrd.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class SettingPage extends StatelessWidget {
@@ -23,7 +24,11 @@ class SettingPage extends StatelessWidget {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            ListView.builder(
+            targetPlatform == DeviceType.iOS? CupertinoFormSection(
+              children: category.settings.map((setting) {
+                return setting.getWidget(targetPlatform);
+              }).toList(),
+            ) : ListView.builder(
               physics: const NeverScrollableScrollPhysics(),
               itemCount: category.settings.length,
               shrinkWrap: true,

@@ -64,7 +64,14 @@ class _MyHomePageState extends State<MyHomePage> {
             OnOffSetting(title: "Dark mode", value: false, onChanged: (val) {}, isPrimary: true, onHint: "Dark", offHint: "Light"),
           ]),
           SettingsCategory(title: "Language", icon: Icons.translate, settings: [
-            StringSelectionSetting(title: "Language", selections: ["English", "Spanish"], onChanged: (val) {}, value: "English", isPrimary: true),
+            StringSelectionSetting(
+              title: "Language",
+              selections: ["English", "Spanish"],
+              onChanged: (val) {},
+              value: "English",
+              isPrimary: true,
+              cupertinoStyle: StringSelectionSettingCupertinoStyle.check,
+            ),
           ]),
         ],
         title: "App",

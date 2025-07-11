@@ -20,6 +20,9 @@ class OnOffSetting implements Setting {
   @override
   final bool shouldShowShortcutWidget = true;
 
+  @override
+  final Color? iconColor;
+
   bool value;
 
   final OnOffSettingStyle style;
@@ -37,6 +40,7 @@ class OnOffSetting implements Setting {
     this.offHint = "Off",
     this.icon,
     this.iconSize,
+    this.iconColor,
   });
 
   @override

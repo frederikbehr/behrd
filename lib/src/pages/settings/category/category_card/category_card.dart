@@ -4,7 +4,7 @@ import 'package:behrd/src/utils/string_utils.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-import 'cupertino_prefix_widget.dart';
+import '../../../../ios_components/cupertino_prefix_widget.dart';
 
 class CategoryCard extends StatelessWidget {
   final DeviceType targetPlatform;
@@ -63,11 +63,14 @@ class CategoryCard extends StatelessWidget {
             title: category.title,
             color: category.iconColor ?? Theme.of(context).colorScheme.primary,
           ) : title,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.end,
-            children: [
-              trailing,
-            ],
+          child: SizedBox(
+            height: 36,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                trailing,
+              ],
+            ),
           ),
         ),
       );

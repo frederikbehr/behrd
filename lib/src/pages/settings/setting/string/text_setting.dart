@@ -19,6 +19,9 @@ class TextSetting implements Setting {
   final IconData? icon;
 
   @override
+  final Color? iconColor;
+
+  @override
   final bool shouldShowShortcutWidget = false;
 
   String value;
@@ -32,6 +35,7 @@ class TextSetting implements Setting {
     required this.value,
     this.icon,
     this.iconSize,
+    this.iconColor
   });
 
   @override

@@ -1,4 +1,5 @@
 import 'package:behrd/src/pages/settings/setting/setting.dart';
+import 'package:behrd/src/pages/settings/setting/string/string_selection_setting_style.dart';
 import 'package:behrd/src/pages/settings/setting/string/string_selection_setting_widget.dart';
 import 'package:flutter/cupertino.dart';
 
@@ -21,10 +22,15 @@ class StringSelectionSetting implements Setting {
   @override
   final bool shouldShowShortcutWidget = false;
 
+  @override
+  final Color? iconColor;
+
   String value;
   final List<String> selections;
 
-  final Function(bool) onChanged;
+  final StringSelectionSettingCupertinoStyle cupertinoStyle;
+
+  final Function(String) onChanged;
 
   StringSelectionSetting({
     required this.title,
@@ -34,13 +40,15 @@ class StringSelectionSetting implements Setting {
     required this.value,
     this.icon,
     this.iconSize,
+    this.iconColor,
+    this.cupertinoStyle = StringSelectionSettingCupertinoStyle.check,
   });
 
   @override
   String? getPrimaryStringValue() => value;
 
   @override
-  Widget getWidget(DeviceType targetPlatform) => StringSelectionSettingWidget(setting: this);
+  Widget getWidget(DeviceType targetPlatform) => StringSelectionSettingWidget(setting: this, targetPlatform: targetPlatform,);
 
   @override
   Widget getShortcutWidget(DeviceType targetPlatform) {

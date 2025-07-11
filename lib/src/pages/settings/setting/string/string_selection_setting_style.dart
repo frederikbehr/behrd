@@ -1,0 +1,3 @@
+enum StringSelectionSettingCupertinoStyle {
+  check, radio
+}
