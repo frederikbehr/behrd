@@ -19,7 +19,7 @@ class MyApp extends StatelessWidget {
           brightness: Brightness.light,
         ),
       ),
-      home: const MyHomePage(title: 'Behrd Example', targetPlatform: DeviceType.iOS),
+      home: const MyHomePage(title: 'Behrd Example', targetPlatform: DeviceType.android),
     );
   }
 }
@@ -83,7 +83,7 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: BehrdNativeAppBar(title: "Home"),
+      appBar: BehrdNativeAppBar(title: "Home", targetPlatform: widget.targetPlatform),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
