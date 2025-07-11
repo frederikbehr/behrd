@@ -42,7 +42,11 @@ class _SettingsPageState extends State<SettingsPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: BehrdNativeAppBar(title: widget.title, previousPageTitle: widget.previousPageTitle),
+      appBar: BehrdNativeAppBar(
+        title: widget.title,
+        previousPageTitle: widget.previousPageTitle,
+        targetPlatform: widget.targetPlatform,
+      ),
       body: SingleChildScrollView(
         child: Column(
           children: [
@@ -71,11 +75,11 @@ class _SettingsPageState extends State<SettingsPage> {
                         color: Theme.of(context).dividerColor,
                         indent: 32,
                         endIndent: 32,
-                      ) : const SizedBox(),
+                      ) : const SizedBox(height: 12),
                       ListView.builder(
                         physics: const NeverScrollableScrollPhysics(),
                         shrinkWrap: true,
-                        padding: EdgeInsets.only(top: 12, bottom: 12),
+                        padding: EdgeInsets.only(bottom: 16),
                         itemCount: widget.groups[index].categories.length,
                         itemBuilder: (BuildContext context, int i) {
                           return CategoryCard(

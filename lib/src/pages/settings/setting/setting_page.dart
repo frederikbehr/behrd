@@ -1,8 +1,6 @@
 import 'package:behrd/behrd.dart';
 import 'package:flutter/material.dart';
 
-import '../../../components/native_app_bar/native_app_bar.dart';
-
 class SettingPage extends StatelessWidget {
   final SettingsCategory category;
   final String previousPageTitle;
@@ -17,7 +15,11 @@ class SettingPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: BehrdNativeAppBar(title: category.title, previousPageTitle: previousPageTitle),
+      appBar: BehrdNativeAppBar(
+        title: category.title,
+        previousPageTitle: previousPageTitle,
+        targetPlatform: targetPlatform,
+      ),
       body: SingleChildScrollView(
         child: Column(
           children: [

@@ -1,5 +1,6 @@
 import 'dart:io' show Platform;
 import 'package:behrd/behrd.dart';
+import 'package:behrd/src/utils/color_utils.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -52,12 +53,20 @@ class BehrdNativeAppBar extends StatelessWidget implements PreferredSizeWidget {
       );
     } else {
       return AppBar(
-        backgroundColor: backgroundColor,
+        backgroundColor: backgroundColor ?? Theme.of(context).colorScheme.primary,
         centerTitle: true,
-        elevation: 0.0,
+        elevation: 5.0,
         actions: actions,
+        iconTheme: IconThemeData(
+          color: ColorUtils.getTextColorFromBackgroundColor(backgroundColor ?? Theme.of(context).colorScheme.primary),
+        ),
         leading: leading,
-        title: titleReplacement ?? Text(title),
+        title: titleReplacement ?? Text(
+          title,
+          style: TextStyle(
+            color: ColorUtils.getTextColorFromBackgroundColor(backgroundColor ?? Theme.of(context).colorScheme.primary),
+          ),
+        ),
         bottom: bottomBorder == true? PreferredSize(
           preferredSize: const Size.fromHeight(4.0),
           child: Container(
